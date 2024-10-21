@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <img src="images\Green_and_White_Plants_Organic_Logo-removebg-preview.png" style="display: block; margin: 0 auto;">
+    <title>Plant Care</title>
+    <link href="pro1.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles.scss">
+</head>
+<body>
+    
+   
+        
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f8f0;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 30px;
+        background-color: #2ecc71;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+        margin: 0;
+        color: #fff;
+        font-size: 28px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    nav {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    li {
+        margin-right: 25px;
+    }
+
+    li:last-child {
+        margin-right: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #ecf0f1;
+    }
+
+    #time {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        background-color: #27ae60;
+        padding: 8px 15px;
+        border-radius: 20px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .plant-care-section {
+        background-color: #e0f7fa;
+        padding: 10px;
+        border-radius: 15px;
+        text-align: center;
+        margin: 30px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .plant-care-section h1 {
+        color: #027a0a;
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
+
+    .plant-care-section p {
+        color: #237602;
+        font-size: 1.1em;
+        line-height: 1.7;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Plant Care Guide</h1>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#plants">Plants</a></li>
+            <li><a href="#tips">Care Tips</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+    </nav>
+    <div id="time"></div>
+</header>
+
+<script>
+    function updateTime() {
+        const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        const timeString = new Date().toLocaleTimeString('en-IN', options);
+        document.getElementById('time').textContent = timeString;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
+</head>
+<body>
+
+<section id="home" class="plant-care-section" style="margin-top: 200;" >
+    <h1>Welcome to Plant Care</h1>
+    <br>
+    <p>Your one-stop solution for all things plant care. Find your plant, or look up its care instructions and advice.</p>
+</section>
+    
+    <div class="container"  style="margin-top: 50;">
+        <form class="search" id="search-bar" action="search.php" method="GET">
+            <input type="search" placeholder="Type something..." name="q" class="search__input" id="search-input" required>
+            <div class="search__button" id="search-button">
+                <i class="ri-search-2-line search__icon"></i>
+            </div>
+        </form>
+        
+        <div id="search-results" class="search-results"></div> <!-- Results Section -->
+    </div>
+    <script src="main.js"></script>  
+<style>
+    .upload-section {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* Center items horizontally */
+        justify-content: center; /* Center items vertically */
+        margin: 20px;          /* Add some margin around the section */
+        padding: 20px;         /* Add some padding inside the section */
+        border: 2px solid green; /* Border for the section */
+        border-radius: 10px;   /* Rounded corners */
+        background-color: #ecf0f1; /* Light background color */
+    }
+    
+    .upload-section h1 {
+        color: green; /* Header color */
+        margin-bottom: 15px; /* Space below the header */
+    }
+    
+    input[type="file"] {
+        padding: 10px;
+        border: 2px solid green;
+        border-radius: 5px;
+        outline: none;
+        margin-bottom: 10px; /* Space below the file input */
+    }
+    
+    .upload-btn {
+        background-color: green;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .upload-btn:hover {
+        background-color: green; /* Change color on hover */
+    }
+</style>    
+    <div class="upload-section">
+        <h1>Upload an Image</h1>
+        <form method="POST" enctype="multipart/form-data" action="contact.php">
+        <input type="file" id="file-input" accept="image/*" />
+        <button class="upload-btn" id="submit-button">Submit</button>
+    </div>
+</div>
+
+<script>
+    
+    const imageResponses = {
+    "rose": "Roses are a group of herbaceous flowering shrubs.",
+    "sunflower": "Sunflowers are known for their large flower heads and bright yellow petals.",
+    "tulip": "Tulips are spring-blooming perennials that grow from bulbs.",
+    "strawberry leaf scorch": `
+        Strawberry Leaf Scorch is a condition affecting strawberry plants, characterized by yellowing and browning of the leaf margins, leading to a scorched appearance. Here’s a brief overview:<br><br>
+
+        <strong>Causes:</strong><br>
+        - Environmental Stress: High temperatures and low humidity can contribute to scorch.<br>
+        - Water Stress: Inconsistent watering, either too much or too little, can cause leaf scorch.<br>
+        - Nutrient Deficiencies: Lack of essential nutrients, particularly potassium, can lead to this condition.<br>
+        - Disease: Certain pathogens, like viruses, can manifest as leaf scorch symptoms.<br><br>
+
+        <strong>Symptoms:</strong><br>
+        - Yellowing of leaf edges<br>
+        - Brown or burnt leaf tips<br>
+        - Curling or wilting of leaves<br>
+        - Premature leaf drop<br><br>
+
+        <strong>Management:</strong><br>
+        - Watering: Ensure consistent moisture without waterlogging.<br>
+        - Mulching: Helps retain soil moisture and regulate temperature.<br>
+        - Fertilization: Apply a balanced fertilizer to address nutrient deficiencies.<br>
+        - Disease Control: Regularly inspect plants for signs of disease and take appropriate measures (like removing infected plants).<br>
+        - Shade: Provide shade during extreme heat to protect plants from stress.<br><br>
+
+        <strong>Prevention:</strong><br>
+        - Choose heat-tolerant strawberry varieties.<br>
+        - Implement proper irrigation practices.<br>
+        - Monitor soil health and nutrient levels regularly.<br><br>
+
+        If you suspect your strawberries are suffering from leaf scorch, addressing the environmental and nutritional factors can often help restore plant health.
+    `
+};
+
+
+
+    document.getElementById('submit-button').onclick = function() {
+        const fileInput = document.getElementById('file-input');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const fileName = file.name.toLowerCase();
+            const response = getResponse(fileName);
+
+            // Create a new page to show the information
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Image Information</title>
+                        <style>
+                            body {
+                                font-family: 'Roboto', sans-serif;
+                                text-align: center;
+                                margin: 50px;
+                                background-color: #ecf0f1;
+                            }
+                            h1 {
+                                color: #2980b9;
+                            }
+                            img {
+                                max-width: 300px;
+                                margin-top: 20px;
+                                border: 2px solid #2c3e50;
+                                border-radius: 5px;
+                            }
+                            p {
+                                color: #333;
+                                font-size: 18px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>Uploaded Image</h1>
+                        <img src="${URL.createObjectURL(file)}" alt="Uploaded Image" />
+                        <p>${response}</p>
+                    </body>
+                </html>
+            `);
+            newWindow.document.close();
+        }
+    };
+
+    function getResponse(fileName) {
+        for (let key in imageResponses) {
+            if (fileName.includes(key)) {
+                return imageResponses[key];
+            }
+        }
+        return "Information not available for this image.";
+    }
+</script>
+
+    <section id="plants" style="margin-top: -10px;">
+        <h2>Rare Plants</h2>
+        <br>
+        <img src="images\Nature YouTube Banner in White Minimalist Photo Style.png" height="200" width="1230">
+        <br>
+        <style>
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            div img {
+                width: 400px;
+                height: 300px;
+                border: 2px solid #ff3d0036;
+                border-radius: 13px;
+                box-shadow: 4px 7px 7px 0px #00000042;
+                cursor: pointer;
+                margin: 10px;
+                transition: 400ms;
+            }
+            div img:hover {
+                filter: grayscale(1);
+                transform: scale(1.03);
+            }
+        </style>
+        <br>
+        <div>
+            <a href="page1.html">
+            <img src="images\ypmpp7g5b5l61.jpg" alt="Clickable Image" id="clickableImage">
+            </a>
+            <img src="images\Welwitschia_mirabilis(2).jpg">
+            <img src="images\qqq_craanagvn-onlyvfvnan-13o.400x400-u0c0i1s1q90f1.jpg">
+            <img src="images\f31df6d953a0c34d8d754916167ae2a5.lg_-e1595214340674.jpg">
+            <img src="images\dfb98b_6d947a33143b477bb8bebc4fdc7a9a13~mv2.webp">
+            <img src="images\Attlwr.jpg">
+            <img src="images\2021corpseflowerusbg.jpg">
+            <img src="images\330px-Paphiopedilum_rothschildianum_(25834537567).jpg">
+            <img src="images\330px-Jade_vine_(70200).jpg">
+            <img src="images\330px-Encephalartos_woodii_original_stem_Durban_Botanic_Gardens_04_09_2010.jpeg">
+        </div>
+        
+    </section>
+    
+
+
+    <section id="tips" style="margin-top: -50px;">
+        <h2>Plant Care Tips</h2>
+        <style>h2 {
+            font-size: 2.5em; /* Increase font size for prominence */
+            font-weight: bold; /* Make the text bold */
+            color: green; /* Use a theme color */
+            text-align: center; /* Center the text */
+            margin: 40px 0 20px; /* Add margin for spacing above and below */
+            text-transform: uppercase; /* Transform text to uppercase for emphasis */
+            letter-spacing: 2px; /* Add space between letters */
+           
+            padding-bottom: 10px; /* Add space below the text and border */
+        }
+        </style>
+        <br>
+        <div class="tips-content"></div>
+        <h3>Video Courses</h3>
+        <style>
+        h3 {
+            color: #ff5722; /* Change to your desired color */
+            font-size: 2em; /* Adjust the font size */
+            margin: 20px 0; /* Space above and below */
+            text-transform: capitalize; /* Capitalize the first letter of each word */
+            font-weight: bold; /* Make the text bold */
+            padding-bottom: 10px; /* Space below the text and border */
+        }
+        </style>
+                    <li><a href="index.php" target="_blank">Introduction to Plant Care</a></li>
+                    <li><a href="https://www.example.com/course2" target="_blank">Advanced Gardening Techniques</a></li>
+                    <li><a href="https://www.example.com/course3" target="_blank">Sustainable Planting Practices</a></li>
+
+                    <div class="tips-content"></div>
+                    <h3>Articles</h3>          
+                    <li> <a href="articles1.html" target="_blank">The Ultimate Guide to Indoor Plants</a></li>
+                    <li>  <a href="https://www.example.com/article2" target="_blank">Top 10 Low Maintenance Plants</a></li>
+                
+                    <div class="gif-container" style="margin-top: -300px;">
+                        <img src="videos\Green Plant Care Plan Instagram Story Video.gif" alt="Description of GIF"  >
+                    </div>
+                    
+                    <style>
+                        .content-section {
+                            text-align: center; /* Center the text in this section */
+                            margin: 40px 0 20px; /* Increase top margin for more space */
+                        }
+                    
+                        .gif-container {
+                            text-align: center; /* Center the GIF */
+                            margin: 40px 0; /* Increase spacing around the GIF */
+                        }
+                    
+                        img {
+                            max-width: 100%; /* Ensure it is responsive */
+                            height: auto; /* Maintain aspect ratio */
+                        }
+                    
+                        h3 {
+                            color: #ff5722; /* Change to your desired color */
+                            font-size: 2em; /* Adjust the font size */
+                            margin: 20px 0; /* Space above and below */
+                            text-transform: capitalize; /* Capitalize the first letter of each word */
+                            font-weight: bold; /* Make the text bold */
+                        }
+                    
+                        ul {
+                            list-style-type: none; /* Remove bullet points */
+                            padding: 0; /* Remove default padding */
+                        }
+                    
+                        li {
+                            margin: 10px 0; /* Space between list items */
+                        }
+                    
+                        a {
+                            color: #007bff; /* Link color */
+                            text-decoration: none; /* Remove underline */
+                        }
+                    
+                        a:hover {
+                            text-decoration: underline; /* Add underline on hover */
+                        }
+                    </style>
+                    
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <style>
+           h2 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: green;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #ff5722;
+            font-size: 2em;
+            margin: 20px 0;
+            text-transform: capitalize;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .journal-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .journal-entry {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #e9ffe9;
+            text-align: left;
+        }
+
+        #journalEntries {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        #chartContainer {
+            margin-top: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        canvas {
+            max-width: 100%;
+            margin: auto;
+        }
+
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<section id="growth-tracking">
+    <h2>Growth Tracking</h2>
+
+    <div class="journal-form">
+        <h3>Growth Journal</h3>
+        <input type="date" id="date" required>
+        <input type="number" id="height" placeholder="Height (cm)" required>
+        <input type="number" id="leafCount" placeholder="Leaf Count" required>
+        <textarea id="notes" placeholder="Notes" rows="4"></textarea>
+        <button onclick="addJournalEntry()">Add Entry</button>
+    </div>
+
+    <div id="journalEntries"></div>
+
+    <div id="chartContainer">
+        <h3>Growth Progress</h3>
+        <canvas id="growthChart"></canvas>
+    </div>
+</section>
+
+<script>
+    const journalEntries = [];
+    const labels = [];
+    const heightData = [];
+    const leafCountData = [];
+    let growthChart;
+
+    function addJournalEntry() {
+        const date = document.getElementById('date').value;
+        const height = parseFloat(document.getElementById('height').value);
+        const leafCount = parseInt(document.getElementById('leafCount').value);
+        const notes = document.getElementById('notes').value;
+
+        if (date && height >= 0 && leafCount >= 0) {
+            journalEntries.push({ date, height, leafCount, notes });
+            updateJournalDisplay();
+            updateChart(date, height, leafCount);
+            clearInputs();
+        } else {
+            alert("Please fill in all fields correctly.");
+        }
+    }
+
+    function updateJournalDisplay() {
+        const journalDiv = document.getElementById('journalEntries');
+        journalDiv.innerHTML = '';
+        journalEntries.forEach(entry => {
+            const entryDiv = document.createElement('div');
+            entryDiv.classList.add('journal-entry');
+            entryDiv.innerHTML = `<strong>${entry.date}</strong><br>Height: ${entry.height} cm<br>Leaf Count: ${entry.leafCount}<br>Notes: ${entry.notes}`;
+            journalDiv.appendChild(entryDiv);
+        });
+    }
+
+    function clearInputs() {
+        document.getElementById('date').value = '';
+        document.getElementById('height').value = '';
+        document.getElementById('leafCount').value = '';
+        document.getElementById('notes').value = '';
+    }
+
+    function updateChart(date, height, leafCount) {
+        // Push new data
+        labels.push(date);
+        heightData.push(height);
+        leafCountData.push(leafCount);
+        
+        // Create or update the chart
+        if (!growthChart) {
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Height (cm)',
+                        data: heightData,
+                        borderColor: 'green',
+                        fill: false,
+                        tension: 0.1
+                    }, {
+                        label: 'Leaf Count',
+                        data: leafCountData,
+                        borderColor: 'blue',
+                        fill: false,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Measurement'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            growthChart.data.labels = labels;
+            growthChart.data.datasets[0].data = heightData;
+            growthChart.data.datasets[1].data = leafCountData;
+            growthChart.update();
+        }
+    }
+</script>
+    
+        
+        <hr>
+        
+        <section id="contact" style="margin-top: -10px;">
+            <h2>Contact Us</h2>
+            <form id="contact-form" method="POST" action="contact.php">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit">Send</button>
+            </form>
+        </section>        
+                 
+        <style>
+        #contact {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: center;    /* Center items horizontally */
+            margin: 20px;          /* Margin around the section */
+            padding: 20px;         /* Padding inside the section */
+            
+        }
+        
+        h2 {
+            color: green; /* Header color */
+            margin-bottom: 20px; /* Space below the header */
+        }
+        
+        .form-group {
+            margin-bottom: 15px; /* Space between form groups */
+            width: 100%;         /* Allow the form group to take full width */
+            max-width: 400px;    /* Limit the maximum width */
+        }
+        
+        label {
+            margin-bottom: 5px; /* Space below the label */
+            font-weight: bold;  /* Make label text bold */
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;         /* Full width for inputs */
+            padding: 10px;       /* Padding inside inputs */
+            border: 2px solid green; /* Border color */
+            border-radius: 5px;  /* Rounded corners */
+            outline: none;       /* Remove outline */
+        }
+        
+        textarea {
+            resize: vertical;    /* Allow vertical resizing only */
+        }
+        
+        button {
+            background-color: green; /* Button color */
+            color: white;           /* Button text color */
+            border: none;           /* No border */
+            border-radius: 5px;    /* Rounded corners */
+            padding: 10px 20px;    /* Padding inside button */
+            cursor: pointer;        /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition for hover */
+        }
+        
+        button:hover {
+            background-color: green; /* Darker color on hover */
+        }
+</style>                
+<br>
+    <footer>
+        <p>&copy; 2024 Plant Care. All rights reserved.</p>
